@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <header th:replace="~{fragments/layout.html :: header}"></header>
+
+    <div class="py-2 flash-message message-success bg-success" th:text="${success}" th:if="${success}"></div>
+    <div class="py-2 flash-message message-error bg-danger" th:text="${error}" th:if="${error}"></div>
+
+    <section class=" container my-2 m-auto mw-75">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Jméno</th>
+                    <th>Adresa</th>
+                    <th>Akce</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="client: ${clients}">
+                    <td th:text="${client.clientId}" class=""></td>
+                    <td th:text="${client.name + ' ' + client.surname}" class=""></td>
+                    <td th:text="${client.street + ' ' + client.houseNumber + ', ' + client.city}" class=""></td>
+                    <td>
+                        <a th:href="@{/insured-clients/{id}(id=${client.clientId})}" class="btn btn-primary">Detail klienta</a>
+                        <a th:href="@{/insured-clients/edit/{id}(id=${client.clientId})}" class="btn btn-warning">Upravit</a>
+                        <a th:href="@{/insured-clients/delete/{id}(id=${client.clientId})}" class="btn btn-danger">Smazat</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    <a class="btn btn-primary" th:href="@{/insured-clients/new}">
+        Přidat pojištěného
+    </a>
+    </section>
+
+    <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+</body>
+</html>

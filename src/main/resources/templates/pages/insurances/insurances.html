@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<article class="table-responsive w-50 mx-auto">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Typ pojištění</th>
+            <th>K čemu slouží</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Životní pojištění</td>
+            <td>Slouží k finančnímu zabezpečení rodiny v případě úmrtí nebo vážného onemocnění pojištěného.</td>
+        </tr>
+        <tr>
+            <td>Úrazové pojištění</td>
+            <td>Kryje rizika spojená s úrazy – např. trvalé následky, hospitalizaci nebo smrt následkem úrazu.</td>
+        </tr>
+        <tr>
+            <td>Pojištění vozidla</td>
+            <td>Chrání vlastníka vozidla před škodami způsobenými při nehodě, havárii, odcizení nebo vandalismu.</td>
+        </tr>
+        <tr>
+            <td>Pojištění majetku</td>
+            <td>Kryje škody na nemovitostech nebo domácnosti – například v případě požáru, vytopení nebo krádeže.</td>
+        </tr>
+        <tr>
+            <td>Cestovní pojištění</td>
+            <td>Poskytuje ochranu při cestách do zahraničí – pokrývá léčebné výlohy, ztrátu zavazadel nebo zrušení cesty.</td>
+        </tr>
+        <tr>
+            <td>Pojištění podnikání</td>
+            <td>Chrání firmu před finančními ztrátami způsobenými např. škodami na majetku, přerušením provozu nebo odpovědností.</td>
+        </tr>
+        <tr>
+            <td>Pojištění odpovědnosti</td>
+            <td>Pokryje škody, které způsobíte jinému člověku nebo jeho majetku – např. vytopení souseda nebo úraz chodce.</td>
+        </tr>
+        </tbody>
+    </table>
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+</body>
+</html>

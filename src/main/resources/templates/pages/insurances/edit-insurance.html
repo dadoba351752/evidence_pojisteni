@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}">
+  <meta charset="UTF-8">
+</head>
+<body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
+<div class="container mw-75">
+  <h1 class="h1 my-2">Editace pojištění</h1>
+  <form th:object="${insurance}"
+        th:action="@{/insured-clients/{clientId}/edit-insurance/{insuranceId}(clientId=${clientId}, insuranceId=${insurance.insuranceId})}"
+        method="post">
+    <section th:replace="~{fragments/layout.html :: insuranceForm}">
+    </section>
+    <input type="hidden" th:field="*{insuranceDate}">
+    <button type="submit" class="btn btn-success">Upravit pojištění</button>
+  </form>
+</div>
+<a th:href="@{/insured-clients/{id}(id=${clientId})}" class="btn btn-primary">Zpět detail pojištěného</a>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+</body>
+</html>

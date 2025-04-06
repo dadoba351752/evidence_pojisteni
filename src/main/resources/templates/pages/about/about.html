@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<article class="w-50 mx-auto my-2">
+    <h1 class="h1">O aplikaci</h1>
+    <p>Tato webová aplikace slouží k evidenci pojištěnců a jejich pojištění. Umožňuje přehledně spravovat seznam klientů, zobrazovat jejich detailní informace a přidávat, upravovat nebo mazat jednotlivá pojištění, která mají sjednaná. Aplikace také obsahuje validaci formulářů a zobrazení chybových nebo informačních hlášek.
+        <br>
+        <br>
+        Projekt jsem vytvořil po absolvování rekvalifikačního kurzu programování u ITnetwork.cz, jako způsob, jak si upevnit a rozšířit nabyté znalosti. Cílem aplikace bylo propojit teorii s praxí a zlepšit se v návrhu i realizaci jednoduché webové aplikace v Javě.</p>
+    <h3 class="h3">Použité technologie:</h3>
+    <ul>
+        <li>Java</li>
+        <li>Spring Boot – backendový framework pro REST a MVC</li>
+        <li>Thymeleaf – šablonovací systém pro vykreslování HTML</li>
+        <li>Spring MVC – řízení toku aplikace a zpracování HTTP požadavků</li>
+        <li>Spring Validation – validace formulářů a vstupních dat</li>
+        <li>Bootstrap – responzivní design a stylování rozhraní</li>
+        <li>HTML/CSS – základní struktura a vzhled stránky</li>
+        <li>Maven – správa závislostí a buildování projektu</li>
+    </ul>
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+</body>
+</html>

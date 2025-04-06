@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/styles/bootstrap.min.css}" type="text/css">
+    <style>
+        .hover:hover {
+            background-color: rgb(202, 202, 202) !important;
+        }
+    </style>
+    <title>Evidence pojištěných</title>
+</head>
+
+<body style="margin: 0; padding: 0; overflow-x: hidden;">
+<header th:fragment="header" class="bg-secondary container-fluid">
+    <div class="row">
+        <div id="logo" class="col-4">
+            <a th:href="@{/home}" href="/home" class="text-decoration-none m-1 text-light">
+                <h1>Evidence pojištění</h1>
+            </a>
+        </div>
+        <div class="col-4"></div>
+        <nav class="nav col-4 container-fluid">
+            <ul class="list-unstyled w-100 d-flex justify-content-between align-items-center mt-3">
+                <li><a th:href="@{/insured-clients}" href="/insured-clients" class="nav-link text-dark fw-bold bg-light rounded-pill px-3 px-md-5 py-2 py-md-3 hover">Pojištěnci</a></li>
+                <li><a th:href="@{/insurances}" href="/insurances" class="nav-link text-dark fw-bold bg-light rounded-pill px-3 px-md-5 py-2 py-md-3 hover">Pojištění</a></li>
+                <li><a th:href="@{/about}" class="nav-link text-dark fw-bold bg-light rounded-pill px-3 px-md-5 py-2 py-md-3 hover">O aplikaci</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+    <section th:fragment="clientInputs">
+        <div class="">
+            <div class="row mb-3">
+                <label for="name" class="col-sm-2 col-form-label">Jméno:</label>
+                <div class="col-sm-10">
+                    <input id="name" type="text" th:field="*{name}" class="form-control" placeholder="Jan"/>
+                    <small class="text-danger" th:errors="*{name}"></small>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="surname" class="col-sm-2 col-form-label">Příjmení:</label>
+                <div class="col-sm-10">
+                    <input id="surname" type="text" th:field="*{surname}" class="form-control" placeholder="Novák"/>
+                    <small class="text-danger" th:errors="*{surname}"></small>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="phoneNumber" class="col-sm-2 col-form-label">Telefonní číslo:</label>
+                <div class="col-sm-10">
+                    <input id="phoneNumber" type="text" th:field="*{phoneNumber}" class="form-control" placeholder="602535648"/>
+                    <small class="text-danger" th:errors="*{phoneNumber}"></small>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="email" class="col-sm-2 col-form-label">Email:</label>
+                <div class="col-sm-10">
+                    <input id="email" type="text" th:field="*{email}" class="form-control" placeholder="jan.novak@email.cz"/>
+                    <small class="text-danger" th:errors="*{email}"></small>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="street" class="col-sm-2 col-form-label">Ulice:</label>
+                <div class="col-sm-10">
+                    <input id="street" type="text" th:field="*{street}" class="form-control" placeholder="Vodičkova"/>
+                    <small class="text-danger" th:errors="*{street}"></small>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="houseNumber" class="col-sm-2 col-form-label">Číslo popisné:</label>
+                <div class="col-sm-10">
+                    <input id="houseNumber" type="text" th:field="*{houseNumber}" class="form-control" placeholder="123"/>
+                    <small class="text-danger" th:errors="*{houseNumber}"></small>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="city" class="col-sm-2 col-form-label">Město:</label>
+                <div class="col-sm-10">
+                    <input id="city" type="text" th:field="*{city}" class="form-control" placeholder="Praha"/>
+                    <small class="text-danger" th:errors="*{city}"></small>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="birthDate" class="col-sm-2 col-form-label">Datum narození:</label>
+                <div class="col-sm-10">
+                    <input id="birthDate" type="date" th:field="*{birthDate}" class="form-control"/>
+                    <small class="text-danger" th:errors="*{birthDate}"></small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section th:fragment="insuranceForm">
+        <div class="row mb-3">
+            <label for="insuranceType" class="col-sm-2 col-form-label">Typ pojištění:</label>
+            <div class="col-sm-10">
+                <select id="insuranceType" th:field="*{clientInsurance}" class="form-control">
+                    <option th:each="type : ${insuranceTypes}"
+                            th:value="${type}"
+                            th:text="${type.description}"></option>
+                    <small class="text-danger" th:errors="*{clientInsurance}"></small>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="insuranceAmount" class="col-sm-2 col-form-label">Pojištěná částka:</label>
+            <div class="col-sm-10">
+                <input id="insuranceAmount" type="number" th:field="*{insuranceAmount}" class="form-control" placeholder="123000">
+                <small class="text-danger" th:errors="*{insuranceAmount}"></small>
+            </div>
+        </div>
+
+        <input type="hidden" th:field="*{clientId}">
+    </section>
+    <footer th:fragment="footer" class="bg-light p-1">
+      Vytvořil &copyAdam Soukal 2025
+    </footer>
+
+</body>
+</html>

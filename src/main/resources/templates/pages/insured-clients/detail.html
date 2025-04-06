@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}">
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<div class="py-2 flash-message message-success bg-success" th:text="${success}" th:if="${success}"></div>
+<div class="py-2 flash-message message-error bg-danger" th:text="${error}" th:if="${error}"></div>
+
+<section>
+  <div class="row text-center m-5">
+    <div class="col-4"></div>
+    <div class="col-2 text-start" style="min-width: 300px;">
+      <h2 th:text="${client.name + ' ' + client.surname}"></h2>
+      <p th:text="'Adresa: ' + ${client.street + ' ' + client.houseNumber + ', ' + client.city}"></p>
+      <p th:text="'Datum narození: ' + ${#temporals.format(client.birthDate,'dd.MM.yyyy')}"></p>
+      <p th:text="'Telefon: ' + ${client.phoneNumber}"></p>
+      <p th:text="'Email: ' + ${client.email}"></p>
+      <p th:if="${insurances == null or insurances.isEmpty()}" class="fw-bold">
+        Tento klient zatím nemá žádná pojištění.
+      </p>
+    </div>
+    <div class="col-2">
+      <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="portrait" class="img-fluid">
+    </div>
+  </div>
+
+  <div class="container mw-75">
+    <table th:if="${insurances != null and !insurances.isEmpty()}" class="table">
+      <thead>
+        <tr>
+          <th><strong>ID</strong></th>
+          <th>Typ pojištění</th>
+          <th>Pojištěná částka</th>
+          <th>Datum sjednání</th>
+          <th>Akce</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="insurance : ${insurances}">
+          <td th:text="${insurance.insuranceId}"></td>
+          <td th:text="${insurance.clientInsurance.description}"></td>
+          <td th:text="${insurance.insuranceAmount + ' Kč'}"></td>
+          <td th:text="${#temporals.format(insurance.insuranceDate,'dd.MM.yyyy')}"></td>
+          <td>
+            <a th:href="@{'/insured-clients/' + ${client.clientId} + '/edit-insurance/' + ${insurance.insuranceId}}"
+               href="/insured-clients/1/edit-insurance/1" class="btn btn-warning">Upravit</a>
+            <a th:href="@{'/insured-clients/' + ${client.clientId} + '/delete-insurance/' + ${insurance.insuranceId}}"
+               href="/insured-clients/1/delete-insurance/1" class="btn btn-danger">Smazat</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <a th:href="@{/insured-clients}" href="/insured-clients" class="btn btn-outline-primary">Zpět na seznam pojištěných</a>
+  <a th:href="@{/insured-clients/{id}/new-insurance(id=${client.clientId})}"
+     href="/insured-clients/1/new-insurance" class="btn btn-primary">Sjednat pojištění</a>
+</section>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+</body>
+</html>

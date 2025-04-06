@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <header th:replace="~{fragments/layout.html :: header}"></header>
+    <article>
+        <div class="container text-center mt-5">
+            <h1 class="mb-3">Evidence pojištění</h1>
+            <p class="lead">Webová aplikace pro správu pojištěnců a jejich pojištění.</p>
+
+            <div class="mt-4">
+                <a href="/insured-clients" class="btn btn-primary m-2">Seznam pojištěnců</a>
+                <a href="/insured-clients/new" class="btn btn-success m-2">Přidat pojištěnce</a>
+                <a href="/about" class="btn btn-secondary m-2">O aplikaci</a>
+            </div>
+        </div>
+    </article>
+
+    <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+</body>
+</html>

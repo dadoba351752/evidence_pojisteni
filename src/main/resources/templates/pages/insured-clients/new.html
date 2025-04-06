@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}">
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+  <div class="container mw-75">
+    <h1 class="h1 my-2">Vytvoření nového pojištěnce</h1>
+    <form th:object="${client}"
+          th:action="@{/insured-clients/new}"
+          method="post">
+      <div th:replace="~{fragments/layout.html :: clientInputs}">
+      </div>
+
+      <button type="submit" class="btn btn-success">Uložit pojištěného</button>
+    </form>
+  </div>
+  <a th:href="@{/insured-clients}" class="btn btn-primary">Zpět na seznam pojištěných</a>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+</body>
+</html>
