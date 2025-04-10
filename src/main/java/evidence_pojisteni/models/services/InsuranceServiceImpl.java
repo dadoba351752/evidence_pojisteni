@@ -14,6 +14,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.StreamSupport;
 
+/**
+ * Implementace rozhraní InsuranceService.
+ */
 @Service
 public class InsuranceServiceImpl implements InsuranceService{
 
@@ -26,6 +29,12 @@ public class InsuranceServiceImpl implements InsuranceService{
     @Autowired
     private ClientRepository clientRepository;
 
+    /**
+     * Vytvoří nové pojištění a přiřadí ho konkrétnímu pojištěnci.
+     * Automaticky nastaví aktuální datum jako datum sjednání.
+     *
+     * @param insurance DTO objekt s daty nového pojištění
+     */
     @Override
     public void create(InsuranceDTO insurance) {
         ClientEntity client = clientRepository.findById(insurance.getClientId())
@@ -38,6 +47,12 @@ public class InsuranceServiceImpl implements InsuranceService{
         insuranceRepository.save(entity);
     }
 
+    /**
+     * Vrátí seznam všech pojištění, která jsou přiřazena danému pojištěnci.
+     *
+     * @param clientId ID pojištěnce
+     * @return seznam pojištění ve formátu DTO
+     */
     @Override
     public List<InsuranceDTO> getByClientId(Long clientId) {
         return StreamSupport.stream(insuranceRepository.findAll().spliterator(), false)
@@ -46,18 +61,35 @@ public class InsuranceServiceImpl implements InsuranceService{
                 .toList();
     }
 
+    /**
+     * Vyhledá pojištění podle jeho ID nebo vyvolá výjimku, pokud neexistuje.
+     *
+     * @param insuranceId ID pojištění
+     * @return entita pojištění
+     */
     private InsuranceEntity getInsuranceOrThrow(long insuranceId) {
         return insuranceRepository
                 .findById(insuranceId)
                 .orElseThrow(InsuranceNotFoundException::new);
     }
 
+    /**
+     * Smaže pojištění podle jeho ID.
+     * Pokud pojištění neexistuje, vyvolá výjimku.
+     *
+     * @param insuranceId ID pojištění, které má být odstraněno
+     */
     @Override
     public void delete(long insuranceId) {
         InsuranceEntity entity = getInsuranceOrThrow(insuranceId);
         insuranceRepository.delete(entity);
     }
 
+    /**
+     * Aktualizuje údaje o existujícím pojištění na základě dat z DTO.
+     *
+     * @param insurance DTO objekt s upravenými daty pojištění
+     */
     @Override
     public void edit(InsuranceDTO insurance) {
         InsuranceEntity fetchedInsurance = getInsuranceOrThrow(insurance.getInsuranceId());
@@ -66,6 +98,13 @@ public class InsuranceServiceImpl implements InsuranceService{
         insuranceRepository.save(fetchedInsurance);
     }
 
+    /**
+     * Vyhledá pojištění podle ID a převede ho do DTO.
+     * Pokud pojištění neexistuje, vyvolá výjimku.
+     *
+     * @param insuranceId ID pojištění
+     * @return DTO reprezentace pojištění
+     */
     @Override
     public InsuranceDTO getById(long insuranceId) {
         InsuranceEntity entity = insuranceRepository

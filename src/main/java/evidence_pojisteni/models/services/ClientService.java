@@ -4,6 +4,9 @@ import evidence_pojisteni.models.dto.ClientDTO;
 
 import java.util.List;
 
+/**
+ * Rozhraní definující operace pro práci s pojištěnci.
+ */
 public interface ClientService {
 
     void create(ClientDTO client);
