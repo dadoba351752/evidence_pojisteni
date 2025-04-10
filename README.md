@@ -61,3 +61,14 @@ Aplikace ověřuje správnost dat pomocí Spring Validation a regulárních výr
 
 Adam Soukal  
 adam.soukal@seznam.cz
+
+## Ukázky / Screenshots
+
+![image](https://github.com/user-attachments/assets/93c6e682-25c8-4d02-b9f4-b8228a9459aa)
+![image](https://github.com/user-attachments/assets/486d2f9a-70ce-4e2b-bf11-384bcdd5cb24)
+![image](https://github.com/user-attachments/assets/6133fa0d-740d-493c-a0de-cdaf30dbb920)
+![image](https://github.com/user-attachments/assets/67631678-4a13-4bef-a0bd-3076c03363f3)
+![image](https://github.com/user-attachments/assets/5144c96b-a16d-4d55-a147-a255114dc6d1)
+
+
+
